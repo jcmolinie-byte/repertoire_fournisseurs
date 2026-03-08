@@ -222,7 +222,7 @@
     letter-spacing: 0.1em;
     color: var(--accent);
     text-transform: uppercase;
-    background: rgba(200,169,110,0.1);
+    background: rgba(200,169,110,0.1) !important;
     border: 1px solid rgba(200,169,110,0.2);
     border-radius: 6px;
     padding: 3px 8px;
@@ -418,20 +418,22 @@
     align-items: center;
     gap: 6px;
     margin-top: 10px;
-    background: linear-gradient(135deg, rgba(200,169,110,0.12), rgba(200,169,110,0.06));
-    border: 1px solid rgba(200,169,110,0.3);
-    border-radius: 8px;
-    color: var(--accent);
+    background: rgba(200,169,110,0.1) !important;
+    border: 1px solid rgba(200,169,110,0.2);
+    border-radius: 6px;
+    color: var(--accent) !important;
     cursor: pointer;
     padding: 7px 12px;
-    font-size: 12px;
+    font-size: 11px;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     transition: all 0.2s;
     width: 100%;
     justify-content: center;
   }
-  .ai-btn:hover { background: linear-gradient(135deg, rgba(200,169,110,0.22), rgba(200,169,110,0.12)); border-color: var(--accent); }
+  .ai-btn:hover { background: rgba(200,169,110,0.18); border-color: var(--accent); color: var(--accent); }
   .ai-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .ai-result {
     margin-top: 10px;
@@ -621,7 +623,7 @@ function doSearch() {
           </div>
         </div>
         <button class="ai-btn" onclick="analyzeSupplier(this, this.dataset.nom, this.dataset.ville, this.dataset.num)" data-nom="${esc(nom)}" data-ville="${esc(ville)}" data-num="${esc(num)}">
-          ✨ Analyser avec l'IA
+          🔎 Plus d'infos avec l'IA
         </button>
         <div id="ai-result-${esc(num)}" class="ai-result"></div>
       </div>
