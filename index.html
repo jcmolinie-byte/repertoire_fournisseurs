@@ -620,7 +620,7 @@ function doSearch() {
             <div class="info-value">${emailHtml}</div>
           </div>
         </div>
-        <button class="ai-btn" onclick="analyzeSupplier(this, '${esc(nom)}', '${esc(ville)}', '${esc(num)}')">
+        <button class="ai-btn" onclick="analyzeSupplier(this, this.dataset.nom, this.dataset.ville, this.dataset.num)" data-nom="${esc(nom)}" data-ville="${esc(ville)}" data-num="${esc(num)}">
           ✨ Analyser avec l'IA
         </button>
         <div id="ai-result-${esc(num)}" class="ai-result"></div>
@@ -678,12 +678,15 @@ async function analyzeSupplier(btn, nom, ville, num) {
       })
     });
     const data = await response.json();
+    console.log('Groq response:', JSON.stringify(data).slice(0, 200));
+    if (!response.ok) { throw new Error('HTTP ' + response.status + ': ' + JSON.stringify(data.error || data)); }
     const text = data.choices && data.choices[0] ? data.choices[0].message.content : 'Informations non disponibles.';
     resultEl.innerHTML = '🤖 ' + text;
     btn.innerHTML = '✓ Analysé';
     btn.style.opacity = '0.5';
   } catch(e) {
-    resultEl.innerHTML = 'Impossible de récupérer les informations.';
+    console.error('Groq error:', e);
+    resultEl.innerHTML = 'Erreur: ' + e.message;
     btn.disabled = false;
     btn.innerHTML = '✨ Analyser avec l\'IA';
   }
