@@ -669,7 +669,7 @@ async function analyzeSupplier(btn, nom, ville, num) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_API_KEY },
       body: JSON.stringify({
-        model: 'llama3-8b-8192',
+        model: 'llama-3.1-8b-instant',
         max_tokens: 200,
         messages: [
           { role: 'system', content: 'Tu es un assistant factuel et concis. Tu réponds en 2-3 phrases maximum.' },
